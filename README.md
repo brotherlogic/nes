@@ -1,162 +1,149 @@
-# NES Completion Project — Definitive Game List & Tracker
+# NES Completion Project — Quick Setup Guide
 
-This repository contains the **definitive, auditable catalog of every official licensed NES release** across North America, Europe (PAL), and Australia, classified according to strict completion criteria for beating every completable English-language NES game.
+This guide covers exactly what to run on **this Linux machine (Workstation / Server)** and what to run on the **Raspberry Pi 3B + 7" Touchscreen Device**.
 
----
-
-## Executive Summary & Target Numbers
-
-| Category | Count | Description |
-| :--- | :---: | :--- |
-| **Included (Core Target List)** | **549** | Official licensed English NES games playable with a standard controller that have a definitive end-of-game screen or credits sequence. |
-| **Borderline (Toggleable Soft Endings)** | **24** | Looping/arcade/sports titles with an end-of-cycle celebration, podium, or finite stage cycle before looping (e.g., *Excitebike*, *Mach Rider*, *Spelunker*, *R.C. Pro-Am*). |
-| **Excluded** | **136** | Endless score loops, exhibition-only sports, single-session game shows/board games, required peripherals (Zapper/Power Pad/R.O.B./Miracle Piano), educational/preschool titles, open-ended sandboxes, multicarts, and French-only *Les Chevaliers du Zodiaque*. |
-| **Total Unique Licensed Releases** | **709** | Complete accounting of the licensed Western NES library (equivalent to **712 physical cartridges** when counting the *Stadium Events* and *Namco Pac-Man* NA label variants and the PAL *Mario Bros. Classic Series* re-release). |
-
-> **How the "677" North American Collector Set Reconciles to 709 Unique Entries:**
-> - **674** unique standalone North American licensed releases + **5** official North American licensed multicarts (*Super Mario Bros./Duck Hunt*, *Super Mario Bros./Duck Hunt/World Class Track Meet*, *Super Spike V'Ball/Nintendo World Cup*, *Donkey Kong Classics*, *Sesame Street: A-B-C & 1-2-3*) = **679** North American entries (or **675** when excluding the 4 pack-in/2-in-1 multicarts, plus the **2** physical cartridge variants *Stadium Events* [identical ROM to *World Class Track Meet*] and 1993 *Namco Pac-Man* [identical ROM to 1988 licensed *Tengen Pac-Man*] = **677**).
-> - **30** PAL/Australian-exclusive Included games + **5** PAL-exclusive Excluded entries (*Devil World*, *Dropzone*, *Elite*, *Les Chevaliers du Zodiaque*, *Mario Bros. Classic Series*, *3-in-1 SMB/Tetris/World Cup*) = **35** PAL-only entries (`674 + 5 + 35 = 709` unique rows).
+*(For the game lists and win conditions see [`NES_COMPLETION_GUIDE.md`](./NES_COMPLETION_GUIDE.md); for TV settings and wiring details see [`HARDWARE.md`](./HARDWARE.md).)*
 
 ---
 
-## Project Rules & Qualification Criteria
+## 1. What to Run on This Machine (Linux Workstation / Server)
 
-1. **Release Scope:** Official Nintendo-licensed NES releases only (North America, Europe/PAL, and Australia). Unlicensed releases, Famicom/FDS-only releases, and modern homebrew are out of scope.
-2. **Regional Deduplication & Language:** Includes all North American licensed games plus all English-language PAL and Australian exclusives (such as *Mr. Gimmick*, *Ufouria: The Saga*, *Rainbow Islands: Bubble Bobble 2*, *New Ghostbusters II*, *Noah's Ark*, *Over Horizon*, *Super Turrican*, *Hammerin' Harry*, *Aladdin*, *The Lion King*, *Beauty and the Beast*, *Asterix*, *The Smurfs*, *Aussie Rules Footy*, *International Cricket*, etc.). Regional renames (e.g., *Contra* / *Probotector*, *Ninja Gaiden* / *Shadow Warriors*, *Fire 'n Ice* / *Solomon's Key 2*) are deduplicated into single entries with both titles searchable. French-only PAL exclusive *Les Chevaliers du Zodiaque: La Légende d'Or* is excluded.
-3. **Standard Controller Only:** Any game that strictly requires the **Zapper** light gun, **Power Pad** mat, **R.O.B.**, or **Miracle Piano** keyboard is excluded. Games where the Zapper or Power Glove is optional and a standard controller works (*Operation Wolf*, *Mechanized Attack*, *The Lone Ranger*, *Laser Invasion*, *The Adventures of Bayou Billy*, *Day Dreamin' Davey*, *Super Glove Ball*, *Bad Street Brawler*, *Track & Field II*) are **included**.
-4. **Looping & Arcade Games:**
-   - **Included:** Games that display a victory/congratulations sequence or credits after completing all unique stages, even if they subsequently loop into a harder quest (e.g., *Super Mario Bros.*, *Kung Fu*, *Castlevania*, *Gradius*, *1942*).
-   - **Borderline (Toggleable):** Games with a brief end-of-cycle milestone/podium before looping or a finite track/stage cycle with no stop screen (*Excitebike*, *Mach Rider*, *Spelunker*, *R.C. Pro-Am*, *Commando*, *Tiger-Heli*, *Xenophobe*, *Track & Field*, *Lunar Pool*, etc.).
-   - **Excluded:** Pure endless score-attack loops with no end-of-cycle victory sequence (*Donkey Kong*, *Pac-Man*, *Galaga*, *Mario Bros.*, *Pinball*, *Millipede*, *BurgerTime*, *Wrecking Crew*, *Lode Runner*, etc.).
-5. **Sports, Racing, Tabletop, Game Shows & Casino:**
-   - **Included:** Only titles featuring a multi-match **Tournament, Season, Pennant, League, or Campaign Ladder** that culminates in an official Championship / ending screen (e.g., *Tecmo Bowl*, *Tecmo Super Bowl*, *Blades of Steel*, *Mike Tyson's Punch-Out!!*, *NES Open Tournament Golf*, *Casino Kid 1 & 2*, *Vegas Dream*, *Othello*, *Anticipation*, *Battleship*).
-   - **Excluded:** Single-match exhibition sports (*Baseball*, *Ice Hockey*, *Double Dribble*, *Soccer*, *Tennis*, *Golf*, etc.) and single-episode TV game shows / single-match board games (*Jeopardy!*, *Wheel of Fortune*, *Family Feud*, *Monopoly*, *The Chessmaster*, *Caesars Palace*).
-6. **Puzzle Games:** Includes both linear stage-clear puzzle games (*Adventures of Lolo 1–3*, *Solomon's Key*, *Fire 'n Ice*, *Wario's Woods*, *Kickle Cubicle*, *Lemmings*) and action/drop puzzle games that reward clearing a specific mode/level milestone with an official ending sequence or credits (*Tetris* Type-B 9-5, *Dr. Mario* Level 20, *Yoshi* Type-B High 9, *Yoshi's Cookie* Round 10-10, *Palamedes* Tournament, *Hatris* Final Sale, *Pipe Dream* Level 36).
-7. **Educational, Preschool & Utility Titles:** All preschool and educational titles (*Sesame Street*, *Fisher-Price*, *Mickey's Numberland/Letterland*, *Mario Is Missing!*, *Mario's Time Machine*, *Where in Time Is Carmen Sandiego?*, *Donkey Kong Jr. Math*) and non-game utilities (*Videomation*, *Color a Dinosaur*, *Taboo: The Sixth Sense*, *Tiny Toon Cartoon Workshop*) are excluded.
-8. **True Endings:** Where a game cuts off early on Practice/Easy difficulty or requires a second loop for the real ending (e.g., *Ghosts 'n Goblins* Loop 2, *Double Dragon II* Supreme Master, *Little Samson* Normal, *Mr. Gimmick* all 6 treasures, *Rainbow Islands* all 7 Giant Diamonds), the true ending requirement is documented in `win_condition`.
+All project files live in `/var/home/simon/projects/nes`.
 
----
+### Option A: Preview / Use the Tracker Locally on This Machine
+Run the companion server locally:
+```bash
+cd /var/home/simon/projects/nes
+./pi_server.py
+```
+Then open **`http://localhost:8765`** in your browser (or open [`index.html`](./index.html) directly).
 
-## Breakdown of the 549 Included Games by Region
-
-| Region | Included Games |
-| :--- | :---: |
-| **North America + PAL (Released in Both)** | 245 |
-| **North America Exclusive (NTSC)** | 275 |
-| **PAL Exclusive (Europe)** | 27 |
-| **PAL Exclusive (Australia)** | 2 |
-| **Total Core Completable List** | **549** |
-
-## Breakdown of the 549 Included Games by Genre
-
-| Genre | Count |
-| :--- | :---: |
-| Action / Platformer | 172 |
-| Sports (Tournament / Season) | 62 |
-| Shoot 'Em Up | 38 |
-| Action / Adventure | 26 |
-| Action / RPG | 19 |
-| RPG | 18 |
-| Racing (Championship / Campaign) | 18 |
-| Puzzle | 15 |
-| Beat 'Em Up | 14 |
-| Run 'n' Gun | 13 |
-| Strategy / Simulation | 13 |
-| Adventure / Point-and-Click | 8 |
-| Simulation / Flight | 7 |
-| Action / Beat 'Em Up | 6 |
-| Puzzle / Platformer | 6 |
-| Action / Shoot 'Em Up | 5 |
-| Arcade Platformer | 5 |
-| Action / Shooter | 4 |
-| Arcade / Breakout | 4 |
-| Arcade Action | 4 |
-| Gallery Shooter | 4 |
-| Racing / Action | 4 |
-| Action / Hack & Slash | 3 |
-| Action / Stealth | 3 |
-| Arcade / Puzzle | 3 |
-| Puzzle / Action | 3 |
-| Racing / Vehicular Combat | 3 |
-| Simulation / Action | 3 |
-| Strategy / Action | 3 |
-| Tabletop / Casino (Campaign) | 3 |
-| Action / Arcade | 2 |
-| Action / Espionage | 2 |
-| Action / Minigames | 2 |
-| Action / Survival | 2 |
-| Action / Top-Down | 2 |
-| Beat 'Em Up / Action | 2 |
-| Puzzle / Picture Search | 2 |
-| Run 'n' Gun / Driving | 2 |
-| Run 'n' Gun / Platformer | 2 |
-| Simulation / Strategy | 2 |
-| Sports / Action | 2 |
-| Tabletop / Board (Campaign) | 2 |
-| Action / Board-Strategy | 1 |
-| Action / Detective | 1 |
-| Action / Driving | 1 |
-| Action / Fighting | 1 |
-| Action / Flight / Shooter | 1 |
-| Action / Grav-Shooter | 1 |
-| Action / Hybrid | 1 |
-| Action / Platformer / Driving | 1 |
-| Action / Puzzle | 1 |
-| Action / Run 'n' Gun | 1 |
-| Action / Sports | 1 |
-| Action / Tactical | 1 |
-| Adventure / Action | 1 |
-| Arcade / Action | 1 |
-| Arcade / Racing | 1 |
-| Arcade Dungeon | 1 |
-| Arcade Puzzle | 1 |
-| ArcadeMaze / Action | 1 |
-| Arena Shooter | 1 |
-| Beat 'Em Up / RPG | 1 |
-| Beat 'Em Up / Run 'n' Gun | 1 |
-| Fighting | 1 |
-| Pinball / RPG | 1 |
-| Puzzle / Isometric | 1 |
-| Racing / Shoot 'Em Up | 1 |
-| Run 'n' Gun / Adventure | 1 |
-| Run 'n' Gun / Tank | 1 |
-| Shoot 'Em Up / Action | 1 |
-| Shoot 'Em Up / Flight | 1 |
-| Shoot 'Em Up / Simulation | 1 |
-| Simulation / Space Shooter | 1 |
-| Sports / Boxing | 1 |
-| Sports / Fighting | 1 |
-| Strategy / Board (Campaign) | 1 |
-| Strategy / RPG | 1 |
-| Strategy / Turn-Based | 1 |
+### Option B: Push Code & ROMs / Sync Progress & Saves with the Raspberry Pi
+1. Place your `.nes` or `.zip` ROM files in `/var/home/simon/projects/nes/roms/`.
+2. Set up passwordless SSH to the Raspberry Pi once:
+   ```bash
+   ssh-copy-id pi@retropie.local
+   ```
+3. Run the sync script anytime to push tracker files/ROMs to the Pi and pull back battery saves (`*.srm`), save states (`*.state*`), victory screenshots (`screenshots/*.png`), and `progress.json`:
+   ```bash
+   cd /var/home/simon/projects/nes
+   ./sync_with_pi.sh
+   ```
+   *(If your Pi has a different hostname or IP, run `PI_HOST=pi@192.168.1.XX ./sync_with_pi.sh`.)*
 
 ---
 
-## Breakdown of the 136 Excluded Games by Reason
+## 2. What to Run on the Raspberry Pi 3B + 7" Touchscreen Device
 
-| Exclusion Category | Count |
-| :--- | :---: |
-| Endless Arcade / Score Loop | 40 |
-| Exhibition-Only Sports / Racing | 26 |
-| Single-Session Game Show / Board / Casino | 24 |
-| Educational / Preschool / Non-Game Utility | 18 |
-| Peripheral Required (Zapper) | 9 |
-| Peripheral Required (Power Pad) | 6 |
-| Multi-cart Compilation | 5 |
-| Open-Ended Sandbox / Simulation | 3 |
-| Non-English / Regional Re-release | 2 |
-| Peripheral Required (R.O.B.) | 2 |
-| Peripheral Required (Miracle Piano) | 1 |
+The Raspberry Pi 3B runs **RetroPie** and drives two screens simultaneously:
+- **HDMI Out (`/dev/fb0` → Samsung Frame TV):** EmulationStation + RetroArch (1080p @ 60Hz)
+- **7" DSI Touchscreen (`/dev/fb1` → 800×480 Stand):** Chromium Kiosk displaying the NES Tracker & TV Control Deck (`http://127.0.0.1:8765`)
 
----
+### Step 1: Boot & RetroArch Config on the Pi
+1. Add these lines to `/boot/config.txt` on the Pi so HDMI is the primary display for games and the 7" Touchscreen is the secondary framebuffer (`/dev/fb1`):
+   ```ini
+   display_default_lcd=0
+   max_framebuffers=2
+   hdmi_force_hotplug=1
+   hdmi_drive=2
+   hdmi_group=1
+   hdmi_mode=16
+   disable_overscan=1
+   gpu_mem=256
+   ```
+2. Add these lines to `/opt/retropie/configs/nes/retroarch.cfg` on the Pi so the 7" Touchscreen buttons can control RetroArch and capture victory screenshots:
+   ```ini
+   network_cmd_enable = "true"
+   network_cmd_port = "55355"
+   screenshot_directory = "/home/pi/.config/retroarch/screenshots"
+   aspect_ratio_index = "0"
+   video_shader_enable = "true"
+   video_shader = "/opt/retropie/emulators/retroarch/shader/crt-pi.glslp"
+   run_ahead_enabled = "true"
+   run_ahead_frames = "1"
+   run_ahead_secondary_instance = "true"
+   ```
 
-## Repository Files & Local Web Tracker
+### Step 2: Install & Run the Companion Server + Touchscreen Kiosk on the Pi
+After running `./sync_with_pi.sh` from your Linux machine (which copies this repo to `/home/pi/nes-tracker` on the Pi), SSH into the Pi (`ssh pi@retropie.local`) and run:
 
-- [`HARDWARE.md`](./HARDWARE.md) — **Complete Hardware, OS & Samsung Frame TV Setup Guide** (Raspberry Pi 3 Model B v1.2 + Official 7" Touchscreen Stand companion kiosk + Wired USB NES Controller + Samsung Frame One Connect Box low-lag Game Mode + `crt-pi` shader + 1-frame Run-Ahead).
-- [`index.html`](./index.html) / [`app.js`](./app.js) / [`styles.css`](./styles.css) / [`data.js`](./data.js) — **Interactive NES Completion Tracker & Touchscreen Control Deck**. Open `index.html` directly in any browser or serve it on the Raspberry Pi via [`pi_server.py`](./pi_server.py) (`http://retropie.local:8765`).
-- [`pi_server.py`](./pi_server.py) — **Raspberry Pi 3B Companion Server**. Serves the tracker UI to the 7" Touchscreen and local Wi-Fi, bridges touchscreen buttons (`SAVE_STATE`, `LOAD_STATE`, `RESET`, `PAUSE_TOGGLE`, `QUIT`, `SCREENSHOT`) to RetroArch over UDP (`127.0.0.1:55355`), launches ROMs on the TV, and captures victory end-screen screenshots.
-- [`sync_with_pi.sh`](./sync_with_pi.sh) — **Bidirectional Wi-Fi Sync & Backup Script**. Pushes ROMs and tracker updates to the Pi and pulls battery saves (`*.srm`), save states (`*.state*`), captured victory screenshots (`screenshots/*.png`), and `progress.json` back to this Linux machine.
-- [`nes_games.json`](./nes_games.json) — Complete structured JSON dataset of all 709 licensed NES releases with win conditions and exclusion reasons.
-- [`nes_games.csv`](./nes_games.csv) — Complete CSV spreadsheet of all 709 licensed NES releases.
-- [`NES_COMPLETION_GUIDE.md`](./NES_COMPLETION_GUIDE.md) — Full Markdown checklist of all 549 Included games, 24 Borderline games, and 136 Excluded games with every game's specific win condition.
-# nes
+```bash
+# 1. Install minimal X11 + Chromium for the 7" Touchscreen
+sudo apt-get update
+sudo apt-get install -y --no-install-recommends xserver-xorg xinit openbox chromium-browser unclutter xinput
+
+# 2. Pin X11 to the 7" Touchscreen (/dev/fb1) and ignore the USB NES controller in X11
+sudo mkdir -p /etc/X11/xorg.conf.d
+sudo tee /etc/X11/xorg.conf.d/99-touchscreen-fb1.conf > /dev/null << 'EOF'
+Section "Device"
+    Identifier "TouchscreenFB1"
+    Driver "fbdev"
+    Option "fbdev" "/dev/fb1"
+EndSection
+
+Section "InputClass"
+    Identifier "IgnoreJoysticksInX11"
+    MatchIsJoystick "on"
+    Option "Ignore" "on"
+EndSection
+EOF
+
+# 3. Create the Kiosk startup script
+cat << 'EOF' > /home/pi/nes-tracker/start_kiosk.sh
+#!/usr/bin/env bash
+xset -dpms
+xset s off
+xset s noblank
+unclutter -idle 1 -root &
+openbox-session &
+exec chromium-browser \
+  --kiosk \
+  --noerrdialogs \
+  --disable-infobars \
+  --disable-session-crashed-bubble \
+  --low-end-device-mode \
+  --disk-cache-dir=/tmp/chromium-cache \
+  "http://127.0.0.1:8765"
+EOF
+chmod +x /home/pi/nes-tracker/start_kiosk.sh /home/pi/nes-tracker/pi_server.py
+
+# 4. Enable systemd services so both start automatically on boot
+sudo tee /etc/systemd/system/nes-tracker-server.service > /dev/null << 'EOF'
+[Unit]
+Description=NES Completion Tracker & RetroArch Companion Server
+After=network.target
+
+[Service]
+Type=simple
+User=pi
+WorkingDirectory=/home/pi/nes-tracker
+ExecStart=/usr/bin/python3 /home/pi/nes-tracker/pi_server.py
+Restart=always
+RestartSec=3
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+sudo tee /etc/systemd/system/nes-touch-kiosk.service > /dev/null << 'EOF'
+[Unit]
+Description=NES 7-Inch Touchscreen Kiosk on /dev/fb1
+After=nes-tracker-server.service
+
+[Service]
+Type=simple
+User=pi
+ExecStart=/usr/bin/startx /home/pi/nes-tracker/start_kiosk.sh -- -nocursor
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+sudo systemctl daemon-reload
+sudo systemctl enable --now nes-tracker-server.service
+sudo systemctl enable --now nes-touch-kiosk.service
+```
+
+Once enabled, the Pi boots straight into **EmulationStation on the TV** and **the NES Tracker + Control Deck on the 7" Touchscreen** (also accessible from any browser on your Wi-Fi at `http://retropie.local:8765`).
