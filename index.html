@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NES Completion Project — Definitive Game List &amp; Tracker</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="app-header">
+    <div class="container header-top">
+      <div>
+        <div class="brand-title">
+          <span class="nes-badge">NES</span>
+          <h1>Every Completable English NES Game</h1>
+        </div>
+        <p class="brand-subtitle">
+          Definitive licensed catalog (North America + PAL/Australia) with specific true-ending win conditions &amp; exclusion audit.
+        </p>
+      </div>
+      <div class="header-actions">
+        <button id="btnRandomGame" class="btn btn-primary" title="Pick a random unbeaten game from your current filtered view">
+          🎲 Pick Random Game
+        </button>
+        <button id="btnExportJson" class="btn" title="Save your completion progress &amp; notes to a JSON file">
+          ⬇️ Export Progress
+        </button>
+        <label class="btn" title="Restore completion progress &amp; notes from a JSON file">
+          ⬆️ Import Progress
+          <input type="file" id="inputImportJson" accept=".json" style="display: none;" />
+        </label>
+        <button id="btnExportCsv" class="btn" title="Export currently filtered games to CSV">
+          📄 Export View CSV
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Dashboard Stats -->
+    <section class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-label">Target Pool Completed</div>
+        <div class="stat-value" id="statCompleted">0 / 549</div>
+        <div class="stat-sub" id="statRemaining">549 games remaining</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">North America (NTSC)</div>
+        <div class="stat-value" id="statNaCount">0 / 519</div>
+        <div class="stat-sub">Licensed NA releases in target pool</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">PAL / Aus Exclusives</div>
+        <div class="stat-value" id="statPalCount">0 / 30</div>
+        <div class="stat-sub">English PAL-only releases in pool</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Full Library Audit</div>
+        <div class="stat-value">709</div>
+        <div class="stat-sub">549 Core · 24 Borderline · 136 Excluded</div>
+      </div>
+    </section>
+
+    <section class="progress-bar-container">
+      <div class="progress-header">
+        <span id="progressTitle">Overall Project Completion</span>
+        <span id="progressPercent">0.00%</span>
+      </div>
+      <div class="progress-track">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+    </section>
+
+    <!-- Raspberry Pi 7" Touchscreen + Samsung Frame TV Companion Deck -->
+    <section class="touch-deck">
+      <div class="touch-deck-header">
+        <span class="touch-deck-title">📺 Pi 3B Touchscreen &amp; Frame TV Control Deck (RetroArch UDP)</span>
+        <span id="nowPlayingLabel" class="now-playing-pill">Active Game: None selected</span>
+      </div>
+      <div class="touch-deck-buttons">
+        <button id="btnDeckCaptureVictory" class="btn btn-touch btn-success" title="Snap a screenshot of the end screen on the TV and mark the active game Completed!">
+          📸 Capture End Screen &amp; Complete!
+        </button>
+        <button class="btn btn-touch" data-ra-cmd="SAVE_STATE" title="Save State to current slot on TV">
+          💾 Save State
+        </button>
+        <button class="btn btn-touch" data-ra-cmd="LOAD_STATE" title="Load State from current slot on TV">
+          📂 Load State
+        </button>
+        <button class="btn btn-touch" data-ra-cmd="STATE_SLOT_MINUS" title="Previous State Slot">
+          ➖ Slot
+        </button>
+        <button class="btn btn-touch" data-ra-cmd="STATE_SLOT_PLUS" title="Next State Slot">
+          ➕ Slot
+        </button>
+        <button class="btn btn-touch" data-ra-cmd="PAUSE_TOGGLE" title="Pause or Resume game on TV">
+          ⏸ Pause
+        </button>
+        <button class="btn btn-touch" data-ra-cmd="RESET" title="Soft-reset NES console">
+          🔄 Reset NES
+        </button>
+        <button class="btn btn-touch" data-ra-cmd="QUIT" title="Exit current game back to EmulationStation on TV">
+          ⏹ Quit to TV Menu
+        </button>
+        <button id="btnSafeShutdownPi" class="btn btn-touch btn-danger" title="Safely shut down the Raspberry Pi 3B before turning off power">
+          ⏻ Safe Shutdown Pi
+        </button>
+      </div>
+    </section>
+
+    <!-- Filters & Controls -->
+    <section class="controls-panel">
+      <div class="filters-row">
+        <div class="filter-group">
+          <label for="searchInput">Search Title, Alt Title, Publisher, or Win Condition</label>
+          <input
+            type="search"
+            id="searchInput"
+            class="input-control"
+            placeholder="e.g. Contra, Probotector, Sunsoft, Loop 2, World Series..."
+          />
+        </div>
+
+        <div class="filter-group">
+          <label for="poolFilter">Catalog View</label>
+          <select id="poolFilter" class="select-control">
+            <option value="target">Active Target Pool (Default)</option>
+            <option value="Included">Core Completable Only (549)</option>
+            <option value="Borderline">Borderline / Soft Ending Only (24)</option>
+            <option value="Excluded">Excluded Games Only (136)</option>
+            <option value="all">All Licensed NES Games (709)</option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <label for="completionFilter">Completion Status</label>
+          <select id="completionFilter" class="select-control">
+            <option value="all">All Games</option>
+            <option value="incomplete">Unbeaten / Remaining</option>
+            <option value="completed">Completed Only</option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <label for="genreFilter">Genre</label>
+          <select id="genreFilter" class="select-control">
+            <option value="all">All Genres</option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <label for="regionFilter">Region</label>
+          <select id="regionFilter" class="select-control">
+            <option value="all">All Regions</option>
+            <option value="NA + PAL">NA + PAL (Both)</option>
+            <option value="NA">North America Exclusive</option>
+            <option value="PAL-All">All PAL / Aus Exclusives (35)</option>
+            <option value="PAL Exclusive">PAL Exclusive (Europe)</option>
+            <option value="PAL Exclusive (Australia)">PAL Exclusive (Australia)</option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <label for="exclusionFilter">Exclusion / Borderline Category</label>
+          <select id="exclusionFilter" class="select-control">
+            <option value="all">All Categories</option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <label for="sortOrder">Sort Order</label>
+          <select id="sortOrder" class="select-control">
+            <option value="release-asc">Release Order (1985 → 1995)</option>
+            <option value="release-desc">Release Order (1995 → 1985)</option>
+            <option value="title-asc">Title (A → Z)</option>
+            <option value="title-desc">Title (Z → A)</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="controls-footer">
+        <label class="toggle-label">
+          <input type="checkbox" id="toggleBorderline" />
+          <span>
+            Include <strong>24 Borderline "Soft-Ending" Games</strong> (e.g. <em>Excitebike</em>, <em>Mach Rider</em>, <em>Spelunker</em>, <em>R.C. Pro-Am</em>) in Active Target Pool (549 → 573)
+          </span>
+        </label>
+        <div class="results-summary" id="resultsSummary">Showing 549 games</div>
+      </div>
+    </section>
+
+    <!-- Games Table -->
+    <section class="table-wrapper">
+      <table class="games-table">
+        <thead>
+          <tr>
+            <th class="check-cell">Done</th>
+            <th>#</th>
+            <th>Title &amp; Publisher</th>
+            <th>Status</th>
+            <th>Region &amp; Year</th>
+            <th>Genre</th>
+            <th>Specific Win Condition / Exclusion Reason</th>
+            <th>Log</th>
+          </tr>
+        </thead>
+        <tbody id="gamesTableBody"></tbody>
+      </table>
+    </section>
+  </main>
+
+  <!-- Game Log / Details Modal -->
+  <div id="gameModal" class="modal-backdrop hidden" role="dialog" aria-modal="true">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div>
+          <h2 id="modalTitle">Game Title</h2>
+          <div id="modalSubtitle" class="alt-title"></div>
+        </div>
+        <button id="modalCloseBtn" class="modal-close" aria-label="Close">&times;</button>
+      </div>
+
+      <div class="modal-info-box">
+        <p><strong>Status:</strong> <span id="modalStatus"></span> &nbsp;|&nbsp; <strong>Genre:</strong> <span id="modalGenre"></span></p>
+        <p><strong>Developer / Publisher:</strong> <span id="modalDevPub"></span></p>
+        <p><strong>Release Dates:</strong> <span id="modalReleases"></span></p>
+        <p><strong>Win Condition / Rule Note:</strong> <span id="modalWinCond"></span></p>
+      </div>
+
+      <div class="form-grid">
+        <div class="filter-group">
+          <label for="modalCompletedCheck">Completion Status</label>
+          <select id="modalCompletedCheck" class="select-control">
+            <option value="false">Not Completed</option>
+            <option value="true">Completed! 🏆</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label for="modalDateInput">Completion Date</label>
+          <input type="date" id="modalDateInput" class="input-control" />
+        </div>
+      </div>
+
+      <div class="filter-group">
+        <label for="modalNotesInput">Personal Playthrough Notes (Save passwords, difficulty, thoughts)</label>
+        <textarea
+          id="modalNotesInput"
+          class="textarea-control"
+          placeholder="Add notes about your playthrough, continue passwords, or end-screen impressions..."
+        ></textarea>
+      </div>
+
+      <div class="modal-actions">
+        <button id="modalLaunchTvBtn" class="btn" title="Launch this game on the Samsung Frame TV via RetroArch">
+          ▶ Launch on TV
+        </button>
+        <button id="modalCaptureVictoryBtn" class="btn btn-success" title="Capture a screenshot of the end screen from the TV and mark Completed">
+          📸 Capture End Screen
+        </button>
+        <button id="modalCancelBtn" class="btn">Cancel</button>
+        <button id="modalSaveBtn" class="btn btn-primary">Save Entry</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,620 @@
+:root {
+  --bg-primary: #111318;
+  --bg-secondary: #1a1d24;
+  --bg-tertiary: #232732;
+  --bg-hover: #2a2f3d;
+  --border-color: #323846;
+  --text-primary: #f0f2f8;
+  --text-secondary: #a6b0c3;
+  --text-muted: #6e788c;
+  --nes-red: #e60012;
+  --nes-red-hover: #ff1a2c;
+  --accent-green: #2ea043;
+  --accent-amber: #d29922;
+  --accent-blue: #388bfd;
+  --accent-purple: #a371f7;
+  --radius: 8px;
+  --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  line-height: 1.5;
+  padding-bottom: 4rem;
+}
+
+.container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* Header */
+.app-header {
+  background: linear-gradient(180deg, #1d2028 0%, var(--bg-secondary) 100%);
+  border-bottom: 3px solid var(--nes-red);
+  padding: 1.5rem 0;
+  margin-bottom: 1.5rem;
+}
+
+.header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.brand-title {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.nes-badge {
+  background-color: var(--nes-red);
+  color: #fff;
+  font-weight: 800;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  padding: 0.25rem 0.6rem;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+
+.brand-title h1 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.brand-subtitle {
+  color: var(--text-secondary);
+  font-size: 0.92rem;
+  margin-top: 0.25rem;
+}
+
+.header-actions {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background-color: var(--bg-tertiary);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+  padding: 0.5rem 0.9rem;
+  border-radius: var(--radius);
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.btn:hover {
+  background-color: var(--bg-hover);
+  border-color: var(--text-muted);
+}
+
+.btn-primary {
+  background-color: var(--nes-red);
+  border-color: var(--nes-red);
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background-color: var(--nes-red-hover);
+  border-color: var(--nes-red-hover);
+}
+
+/* Stats Dashboard */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.stat-card {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  padding: 1rem 1.2rem;
+}
+
+.stat-label {
+  color: var(--text-secondary);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+}
+
+.stat-value {
+  font-size: 1.65rem;
+  font-weight: 700;
+  font-family: var(--font-mono);
+  margin-top: 0.2rem;
+}
+
+.stat-sub {
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  margin-top: 0.15rem;
+}
+
+.progress-bar-container {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  padding: 1rem 1.2rem;
+  margin-bottom: 1.5rem;
+}
+
+.progress-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.progress-track {
+  width: 100%;
+  height: 14px;
+  background-color: var(--bg-primary);
+  border-radius: 999px;
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--nes-red) 0%, #ff5e3a 100%);
+  width: 0%;
+  transition: width 0.3s ease;
+}
+
+/* Controls & Filters */
+.controls-panel {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  padding: 1.2rem;
+  margin-bottom: 1.25rem;
+}
+
+.filters-row {
+  display: grid;
+  grid-template-columns: 2fr repeat(6, 1fr);
+  gap: 0.75rem;
+  align-items: end;
+}
+
+@media (max-width: 1100px) {
+  .filters-row {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .filters-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.filter-group label {
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.input-control,
+.select-control {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  padding: 0.55rem 0.75rem;
+  font-size: 0.875rem;
+  width: 100%;
+}
+
+.input-control:focus,
+.select-control:focus {
+  outline: none;
+  border-color: var(--accent-blue);
+}
+
+.controls-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+  padding-top: 0.85rem;
+  border-top: 1px solid var(--border-color);
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.toggle-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  cursor: pointer;
+  font-size: 0.88rem;
+  color: var(--text-primary);
+  user-select: none;
+}
+
+.toggle-label input[type="checkbox"] {
+  width: 1.05rem;
+  height: 1.05rem;
+  accent-color: var(--nes-red);
+  cursor: pointer;
+}
+
+.results-summary {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+/* Table */
+.table-wrapper {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  overflow-x: auto;
+}
+
+.games-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.88rem;
+}
+
+.games-table th {
+  background-color: var(--bg-tertiary);
+  color: var(--text-secondary);
+  font-weight: 600;
+  font-size: 0.76rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.8rem 1rem;
+  border-bottom: 1px solid var(--border-color);
+  white-space: nowrap;
+}
+
+.games-table td {
+  padding: 0.85rem 1rem;
+  border-bottom: 1px solid var(--border-color);
+  vertical-align: top;
+}
+
+.games-table tbody tr:hover {
+  background-color: var(--bg-hover);
+}
+
+.games-table tbody tr.row-completed {
+  background-color: rgba(46, 160, 67, 0.08);
+}
+
+.games-table tbody tr.row-completed .game-title-text {
+  color: #56d364;
+}
+
+.check-cell {
+  width: 48px;
+  text-align: center;
+}
+
+.complete-checkbox {
+  width: 1.2rem;
+  height: 1.2rem;
+  accent-color: var(--accent-green);
+  cursor: pointer;
+  margin-top: 0.15rem;
+}
+
+.game-title-cell {
+  min-width: 220px;
+}
+
+.game-title-text {
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--text-primary);
+}
+
+.alt-title {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin-top: 0.15rem;
+}
+
+.meta-sub {
+  font-size: 0.76rem;
+  color: var(--text-secondary);
+  margin-top: 0.2rem;
+}
+
+.win-cond-cell {
+  min-width: 340px;
+  max-width: 560px;
+  color: var(--text-secondary);
+  line-height: 1.45;
+}
+
+.user-note-preview {
+  margin-top: 0.4rem;
+  padding: 0.35rem 0.6rem;
+  background-color: rgba(56, 139, 253, 0.12);
+  border-left: 3px solid var(--accent-blue);
+  border-radius: 4px;
+  font-size: 0.8rem;
+  color: var(--text-primary);
+}
+
+/* Badges */
+.badge {
+  display: inline-block;
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.badge-included {
+  background-color: rgba(46, 160, 67, 0.18);
+  color: #56d364;
+  border: 1px solid rgba(46, 160, 67, 0.4);
+}
+
+.badge-borderline {
+  background-color: rgba(210, 153, 34, 0.18);
+  color: #e3b341;
+  border: 1px solid rgba(210, 153, 34, 0.4);
+}
+
+.badge-excluded {
+  background-color: rgba(248, 81, 73, 0.15);
+  color: #ff7b72;
+  border: 1px solid rgba(248, 81, 73, 0.35);
+}
+
+.badge-region {
+  background-color: var(--bg-tertiary);
+  color: var(--text-secondary);
+  border: 1px solid var(--border-color);
+}
+
+.badge-pal {
+  background-color: rgba(163, 113, 247, 0.16);
+  color: #d2a8ff;
+  border: 1px solid rgba(163, 113, 247, 0.35);
+}
+
+.completed-date-badge {
+  display: inline-block;
+  margin-top: 0.25rem;
+  font-size: 0.72rem;
+  font-family: var(--font-mono);
+  color: #56d364;
+}
+
+/* Modal */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.72);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 1rem;
+}
+
+.modal-backdrop.hidden {
+  display: none;
+}
+
+.modal-card {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-top: 4px solid var(--nes-red);
+  border-radius: var(--radius);
+  max-width: 640px;
+  width: 100%;
+  padding: 1.5rem;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+
+.modal-header h2 {
+  font-size: 1.25rem;
+}
+
+.modal-close {
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  font-size: 1.4rem;
+  cursor: pointer;
+}
+
+.modal-info-box {
+  background-color: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  padding: 0.9rem;
+  margin-bottom: 1rem;
+  font-size: 0.88rem;
+}
+
+.modal-info-box p + p {
+  margin-top: 0.45rem;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.85rem;
+  margin-bottom: 0.85rem;
+}
+
+.textarea-control {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  padding: 0.65rem;
+  font-size: 0.88rem;
+  font-family: var(--font-sans);
+  width: 100%;
+  min-height: 95px;
+  resize: vertical;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.6rem;
+  margin-top: 1.2rem;
+  flex-wrap: wrap;
+}
+
+/* Raspberry Pi 7" Touchscreen Control Deck */
+.touch-deck {
+  background: linear-gradient(180deg, #1e222d 0%, var(--bg-secondary) 100%);
+  border: 1px solid var(--border-color);
+  border-left: 4px solid var(--nes-red);
+  border-radius: var(--radius);
+  padding: 0.9rem 1.1rem;
+  margin-bottom: 1.25rem;
+}
+
+.touch-deck-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.65rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.touch-deck-title {
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-secondary);
+}
+
+.now-playing-pill {
+  font-size: 0.82rem;
+  color: #56d364;
+  font-family: var(--font-mono);
+}
+
+.touch-deck-buttons {
+  display: flex;
+  gap: 0.55rem;
+  flex-wrap: wrap;
+}
+
+.btn-touch {
+  padding: 0.65rem 0.95rem;
+  font-size: 0.86rem;
+  min-height: 42px;
+}
+
+.btn-success {
+  background-color: var(--accent-green);
+  border-color: var(--accent-green);
+  color: #fff;
+}
+
+.btn-success:hover {
+  background-color: #3fb950;
+  border-color: #3fb950;
+}
+
+.btn-danger {
+  background-color: rgba(248, 81, 73, 0.16);
+  border-color: rgba(248, 81, 73, 0.45);
+  color: #ff7b72;
+}
+
+.btn-danger:hover {
+  background-color: rgba(248, 81, 73, 0.3);
+}
+
+.action-cell {
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+
+.screenshot-thumb {
+  margin-top: 0.45rem;
+  max-width: 180px;
+  border-radius: 4px;
+  border: 1px solid var(--border-color);
+  display: block;
+}
+
+/* Compact layout optimization for Official 7" Pi Touchscreen (800x480) */
+@media (max-width: 860px) {
+  .container {
+    padding: 0 0.75rem;
+  }
+  .app-header {
+    padding: 0.85rem 0;
+    margin-bottom: 0.85rem;
+  }
+  .brand-title h1 {
+    font-size: 1.2rem;
+  }
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.6rem;
+  }
+  .stat-card {
+    padding: 0.65rem 0.85rem;
+  }
+  .stat-value {
+    font-size: 1.25rem;
+  }
+}
+
